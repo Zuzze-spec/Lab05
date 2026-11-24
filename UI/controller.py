@@ -9,10 +9,16 @@ class Controller:
         self._model = model
 
     def riempiDD(self):
-        pass
+        listCorsiOption = []
+        for corso in self._model.getListCorsiDAO():
+            corsoOption = ft.dropdown.Option(key=corso.codins, text=corso.__str__())
+            listCorsiOption.append(corsoOption)
+        return listCorsiOption
+
 
     def cercaIscritti(self, e):
-        pass
+        codinsSelezionato = self._view._ddCorso.value #QUESTO MI RESTITUISCE UN codins PER LA RIGA 14 (key=corso.codins)
+
 
     def cercaStudente(self, e):
         pass

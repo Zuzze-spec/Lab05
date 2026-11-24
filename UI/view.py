@@ -44,9 +44,11 @@ class View(ft.UserControl):
                                        label="matricola",
                                        width=150)
         self._nome = ft.TextField(value=None,
-                                  label="nome")
+                                  label="nome",
+                                  read_only=True)
         self._cognome = ft.TextField(value=None,
-                                     label="cognome")
+                                     label="cognome",
+                                     read_only=True)
         row2 = ft.Row(controls=[self._matricola, self._nome, self._cognome])
 
         self._bCercaStudente = ft.ElevatedButton(text="Cerca studente",

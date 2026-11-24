@@ -4,3 +4,10 @@ class Corso:
         self._crediti = crediti
         self._nome = nome
         self._pd = pd
+
+    def __str__(self):
+        return f"{self._nome} ({self._codins})"
+
+    @property
+    def codins(self):
+        return self._codins

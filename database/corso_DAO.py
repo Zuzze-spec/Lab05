@@ -5,6 +5,7 @@ from database.DB_connect import get_connection
 class Corso_DAO():
     def __init__(self):
         self._listCorsi = []
+        self.ottieniCorsi()
 
     def ottieniCorsi(self):
         cnx = get_connection()
@@ -15,7 +16,11 @@ class Corso_DAO():
             corso = Corso(row["codins"], row["crediti"], row["nome"], row["pd"])
             self._listCorsi.append(corso)
 
-        print(self._listCorsi)
+        #print(self._listCorsi)
+
+    @property
+    def listCorsi(self):
+        return self._listCorsi
 
 if __name__ == "__main__": #SERVE PER CREARE UN main DA RUNNARE IN QUESTA CLASSE (SOLO CHECK)
     corso = Corso_DAO()
