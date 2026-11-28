@@ -18,6 +18,32 @@ class Corso_DAO():
 
         #print(self._listCorsi)
 
+    def ottieniCorsiMatricola1(self, matricola):
+        cnx = get_connection()
+        cursor = cnx.cursor(dictionary = True) #OGNI row DI cursor E'UN DIZIONARIO
+        query = ("SELECT codins FROM iscrizione "
+                 "WHERE matricola = %s")
+        cursor.execute(query, (matricola,))
+        listCorsiMatricola=[]
+        for row in cursor:
+            codins = row["codins"]
+            for c in self._listCorsi:
+                if c.codins == codins:
+                    listCorsiMatricola.append(c)
+        return listCorsiMatricola
+
+    def ottieniCorsiMatricola2(self, matricola):
+        cnx = get_connection()
+        cursor = cnx.cursor(dictionary=True)
+        query = ("SELECT c.* FROM iscrizione i, corso c "
+                 "WHERE i.codins = c.codins AND matricola = %s")
+        cursor.execute(query, (matricola,))
+        listCorsiMatricola=[]
+        for row in cursor:
+            corsoMatricola = Corso(row["codins"], row["crediti"], row["nome"], row["pd"])
+            listCorsiMatricola.append(corsoMatricola)
+        return listCorsiMatricola
+
     @property
     def listCorsi(self):
         return self._listCorsi

@@ -83,7 +83,7 @@ class View(ft.UserControl):
     def create_alert(self, message):
         """Function that opens a popup alert window, displaying a message
         :param message: the message to be displayed"""
-        dlg = ft.AlertDialog(title=ft.Text(message))
+        dlg = ft.AlertDialog(title=ft.Text(value=message, color="red"))
         self._page.dialog = dlg
         dlg.open = True
         self._page.update()
